@@ -28,10 +28,17 @@ func _spawn_target():
 	target.position = Vector2(randf_range(50, 1230), randf_range(50, 670))
 
 	if is_bomb:
-		target.color = Color(0.9, 0.2, 0.2)
+		target.color = Color(1.0, 0.0, 0.0)
 		target.set_meta("is_bomb", true)
 	else:
-		target.color = Color(0.3, 0.9, 0.3)
+		var colors = [
+			Color(0.0, 1.0, 0.5),
+			Color(0.0, 0.8, 1.0),
+			Color(1.0, 1.0, 0.0),
+			Color(1.0, 0.5, 0.0),
+			Color(0.5, 0.0, 1.0)
+		]
+		target.color = colors[randi() % colors.size()]
 		target.set_meta("is_bomb", false)
 
 	targets_node.add_child(target)

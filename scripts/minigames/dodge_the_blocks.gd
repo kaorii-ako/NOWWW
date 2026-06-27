@@ -34,11 +34,18 @@ func _move_player(delta):
 
 	player.position += velocity * player_speed * delta
 	player.position.x = clamp(player.position.x, 30, 1250)
-	player.position.y = 680
+	player.position.y = 600
 
 func _spawn_block():
 	var block = ColorRect.new()
-	block.color = Color(0.9, 0.3, 0.3)
+	var colors = [
+		Color(1.0, 0.2, 0.3),
+		Color(1.0, 0.5, 0.1),
+		Color(1.0, 0.8, 0.0),
+		Color(0.8, 0.2, 1.0),
+		Color(1.0, 0.4, 0.7)
+	]
+	block.color = colors[randi() % colors.size()]
 	block.size = Vector2(40, 40)
 	block.position = Vector2(randf_range(30, 1250), -40)
 	blocks_node.add_child(block)

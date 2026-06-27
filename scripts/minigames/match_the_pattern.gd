@@ -17,10 +17,22 @@ func _on_minigame_start():
 
 func _setup_grid():
 	grid.columns = 3
+	var colors = [
+		Color(1.0, 0.2, 0.3),
+		Color(0.2, 0.6, 1.0),
+		Color(0.0, 1.0, 0.5),
+		Color(1.0, 0.8, 0.0),
+		Color(0.8, 0.2, 1.0),
+		Color(1.0, 0.5, 0.0),
+		Color(0.0, 1.0, 1.0),
+		Color(1.0, 0.4, 0.7),
+		Color(0.5, 1.0, 0.5)
+	]
 	for i in range(9):
 		var button = Button.new()
 		button.custom_minimum_size = Vector2(100, 100)
 		button.text = str(i + 1)
+		button.modulate = colors[i]
 		button.pressed.connect(_on_tile_pressed.bind(i))
 		grid.add_child(button)
 		grid_buttons.append(button)

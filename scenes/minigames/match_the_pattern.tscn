@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://match001"]
+
+[ext_resource type="Script" path="res://scripts/minigames/match_the_pattern.gd" id="1"]
+
+[node name="MatchThePattern" type="Node2D"]
+script = ExtResource("1")
+time_limit = 6.0
+instruction_text = "MATCH!"
+
+[node name="PatternDisplay" type="Label" parent="."]
+offset_left = 440.0
+offset_top = 100.0
+offset_right = 840.0
+offset_bottom = 150.0
+text = "Remember the pattern!"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="."]
+offset_left = 440.0
+offset_top = 200.0
+offset_right = 840.0
+offset_bottom = 500.0
+columns = 3

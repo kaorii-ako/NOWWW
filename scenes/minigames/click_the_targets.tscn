@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://click001"]
+
+[ext_resource type="Script" path="res://scripts/minigames/click_the_targets.gd" id="1"]
+
+[node name="ClickTheTargets" type="Node2D"]
+script = ExtResource("1")
+time_limit = 5.0
+instruction_text = "TAP!"
+
+[node name="Targets" type="Node2D" parent="."]

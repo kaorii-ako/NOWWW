@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://stop001"]
+
+[ext_resource type="Script" path="res://scripts/minigames/stop_on_green.gd" id="1"]
+
+[node name="StopOnGreen" type="Node2D"]
+script = ExtResource("1")
+time_limit = 4.0
+instruction_text = "STOP!"
+
+[node name="Bar" type="ColorRect" parent="."]
+color = Color(0.9, 0.2, 0.2, 1)
+offset_left = 0.0
+offset_top = 300.0
+offset_right = 1280.0
+offset_bottom = 350.0
+
+[node name="GreenZone" type="ColorRect" parent="."]
+color = Color(0.3, 0.9, 0.3, 1)
+offset_left = 500.0
+offset_top = 300.0
+offset_right = 700.0
+offset_bottom = 350.0
+
+[node name="Indicator" type="ColorRect" parent="."]
+color = Color(1, 1, 1, 1)
+offset_left = 0.0
+offset_top = 290.0
+offset_right = 20.0
+offset_bottom = 360.0

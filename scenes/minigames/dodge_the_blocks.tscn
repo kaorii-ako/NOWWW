@@ -4,7 +4,7 @@
 
 [node name="DodgeTheBlocks" type="Node2D"]
 script = ExtResource("1")
-time_limit = 5.0
+time_limit = 30.0
 instruction_text = "DODGE!"
 
 [node name="Player" type="ColorRect" parent="."]

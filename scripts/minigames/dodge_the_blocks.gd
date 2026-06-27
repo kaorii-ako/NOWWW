@@ -9,8 +9,11 @@ var block_spawn_interval: float = 0.5
 @onready var blocks_node = $Blocks
 
 func _on_minigame_start():
-	time_limit = 5.0
+	time_limit = 30.0
 	instruction_text = "DODGE!"
+
+func _on_timeout():
+	win()
 
 func _process(delta):
 	super._process(delta)

@@ -4,6 +4,7 @@ var targets_clicked: int = 0
 var targets_required: int = 5
 var target_spawn_timer: float = 0.0
 var target_spawn_interval: float = 0.8
+var click_cooldown: float = 0.0
 
 @onready var targets_node = $Targets
 
@@ -16,10 +17,15 @@ func _process(delta):
 	if not is_active:
 		return
 
+	click_cooldown -= delta
 	target_spawn_timer += delta
 	if target_spawn_timer >= target_spawn_interval:
 		target_spawn_timer = 0.0
 		_spawn_target()
+
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and click_cooldown <= 0.0:
+		click_cooldown = 0.15
+		_handle_click()
 
 func _spawn_target():
 	var is_bomb = randf() < 0.2
@@ -47,19 +53,16 @@ func _spawn_target():
 	tween.tween_property(target, "modulate:a", 0.0, 1.5)
 	tween.tween_callback(target.queue_free)
 
-func _input(event):
-	if not is_active:
-		return
-
-	if event is InputEventMouseButton and event.pressed:
-		for target in targets_node.get_children():
-			var target_rect = Rect2(target.position, target.size)
-			if target_rect.has_point(event.position):
-				if target.get_meta("is_bomb"):
-					lose()
-				else:
-					targets_clicked += 1
-					target.queue_free()
-					if targets_clicked >= targets_required:
-						win()
-				break
+func _handle_click():
+	var mouse_pos = get_viewport().get_mouse_position()
+	for target in targets_node.get_children():
+		var target_rect = Rect2(target.position, target.size)
+		if target_rect.has_point(mouse_pos):
+			if target.get_meta("is_bomb"):
+				lose()
+			else:
+				targets_clicked += 1
+				target.queue_free()
+				if targets_clicked >= targets_required:
+					win()
+			break

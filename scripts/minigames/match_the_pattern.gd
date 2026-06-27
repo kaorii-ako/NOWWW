@@ -32,6 +32,7 @@ func _setup_grid():
 		var button = Button.new()
 		button.custom_minimum_size = Vector2(100, 100)
 		button.text = str(i + 1)
+		button.add_theme_font_size_override("font_size", 32)
 		button.modulate = colors[i]
 		button.pressed.connect(_on_tile_pressed.bind(i))
 		grid.add_child(button)
@@ -45,9 +46,13 @@ func _generate_pattern():
 			pattern.append(num)
 
 func _show_pattern():
-	pattern_display.text = "Remember: " + str(pattern)
+	var display_numbers = []
+	for idx in pattern:
+		display_numbers.append(idx + 1)
+	pattern_display.text = "Remember: " + str(display_numbers)
 	await get_tree().create_timer(2.0).timeout
-	pattern_display.text = "Your turn!"
+	if is_active:
+		pattern_display.text = "Your turn!"
 
 func _on_tile_pressed(tile_index: int):
 	if not is_active:

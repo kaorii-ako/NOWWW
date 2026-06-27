@@ -3,6 +3,7 @@ extends Node2D
 var current_minigame_instance: MinigameBase = null
 var transition_timer: float = 0.0
 var in_transition: bool = false
+var is_loading: bool = false
 
 const TRANSITION_DELAY: float = 2.0
 
@@ -29,6 +30,10 @@ func _process(delta):
 			_load_next_minigame()
 
 func _load_next_minigame():
+	if is_loading:
+		return
+	is_loading = true
+
 	if current_minigame_instance:
 		current_minigame_instance.queue_free()
 		current_minigame_instance = null
@@ -37,12 +42,16 @@ func _load_next_minigame():
 
 	await get_tree().create_timer(1.0).timeout
 
+	if not is_inside_tree():
+		return
+
 	var path = Global.get_next_minigame_path()
 	var scene = load(path) as PackedScene
 	current_minigame_instance = scene.instantiate() as MinigameBase
 	current_minigame_instance.won.connect(_on_minigame_won_internal)
 	current_minigame_instance.lost.connect(_on_minigame_lost_internal)
 	add_child(current_minigame_instance)
+	is_loading = false
 
 func _on_minigame_won_internal():
 	Global.win_minigame()

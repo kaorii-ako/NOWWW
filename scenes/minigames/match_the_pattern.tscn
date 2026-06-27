@@ -12,6 +12,8 @@ offset_left = 440.0
 offset_top = 100.0
 offset_right = 840.0
 offset_bottom = 150.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 28
 text = "Remember the pattern!"
 horizontal_alignment = 1
 

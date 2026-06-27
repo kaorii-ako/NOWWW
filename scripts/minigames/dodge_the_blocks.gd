@@ -59,6 +59,6 @@ func _move_blocks(delta):
 			lose()
 
 func _check_collision(block: ColorRect) -> bool:
-	var player_rect = Rect2(player.position - Vector2(25, 25), Vector2(50, 50))
+	var player_rect = Rect2(player.position, player.size)
 	var block_rect = Rect2(block.position, block.size)
 	return player_rect.intersects(block_rect)

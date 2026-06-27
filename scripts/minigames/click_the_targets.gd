@@ -3,13 +3,13 @@ extends MinigameBase
 var targets_clicked: int = 0
 var targets_required: int = 5
 var target_spawn_timer: float = 0.0
-var target_spawn_interval: float = 0.8
+var target_spawn_interval: float = 0.5
 var click_cooldown: float = 0.0
 
 @onready var targets_node = $Targets
 
 func _on_minigame_start():
-	time_limit = 5.0
+	time_limit = 10.0
 	instruction_text = "TAP!"
 
 func _process(delta):

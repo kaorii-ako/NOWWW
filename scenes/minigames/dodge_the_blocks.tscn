@@ -9,10 +9,10 @@ instruction_text = "DODGE!"
 
 [node name="Player" type="ColorRect" parent="."]
 color = Color(0.3, 0.76, 0.97, 1)
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-position = Vector2(640, 650)
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+position = Vector2(640, 680)
 
 [node name="Blocks" type="Node2D" parent="."]

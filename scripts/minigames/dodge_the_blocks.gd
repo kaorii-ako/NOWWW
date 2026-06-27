@@ -34,6 +34,7 @@ func _move_player(delta):
 
 	player.position += velocity * player_speed * delta
 	player.position.x = clamp(player.position.x, 30, 1250)
+	player.position.y = 680
 
 func _spawn_block():
 	var block = ColorRect.new()
@@ -51,6 +52,6 @@ func _move_blocks(delta):
 			lose()
 
 func _check_collision(block: ColorRect) -> bool:
-	var player_rect = Rect2(player.position - Vector2(20, 20), Vector2(40, 40))
+	var player_rect = Rect2(player.position - Vector2(25, 25), Vector2(50, 50))
 	var block_rect = Rect2(block.position, block.size)
 	return player_rect.intersects(block_rect)
